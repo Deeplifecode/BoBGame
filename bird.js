@@ -14,12 +14,14 @@ let pipe_interval; // To manage pipe creation interval
 img.style.display = 'none';
 message.classList.add('messageStyle');
 
-// Restart or start game on screen click
-document.addEventListener('click', () => {
+// Start or restart game on screen click
+document.addEventListener('click', startOrRestartGame);
+
+function startOrRestartGame() {
     if (game_stage !== 'play') {
         restartGame();
     }
-});
+}
 
 function restartGame() {
     // Reset variables
@@ -132,4 +134,7 @@ function endGame() {
     message.innerHTML = '<span style="color: red;">Game Over</span><br>Tap to Restart';
     message.classList.add('messageStyle');
     img.style.display = 'none';
+
+    // Remove the click event listener after game over to prevent it from triggering again unintentionally
+    document.removeEventListener('click', startOrRestartGame);
 }
