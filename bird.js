@@ -14,9 +14,9 @@ let pipe_interval; // To manage pipe creation interval
 img.style.display = 'none';
 message.classList.add('messageStyle');
 
-// Restart game on Enter key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && game_stage !== 'play') {
+// Restart or start game on screen click
+document.addEventListener('click', () => {
+    if (game_stage !== 'play') {
         restartGame();
     }
 });
@@ -129,7 +129,7 @@ function play() {
 
 function endGame() {
     game_stage = 'End';
-    message.innerHTML = '<span style="color: red;">Game Over</span><br>Press Enter To Restart';
+    message.innerHTML = '<span style="color: red;">Game Over</span><br>Tap to Restart';
     message.classList.add('messageStyle');
     img.style.display = 'none';
 }
