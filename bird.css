@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.background {
+    height: 100vh;
+    width: 100vw; /* Changed to 100vw for full width */
+    background: url(background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bird {
+    height: 100px;
+    width: 130px;
+    position: fixed;
+    top: 40vh;
+    left: 30vh;
+    z-index: 100;
+    background: yellow; /* Added a default background for the bird */
+    border-radius: 50%; /* Optional: Makes the bird circular */
+}
+
+.pipe_sprite {
+    position: fixed;
+    top: 40vh;
+    left: 100vh;
+    height: 40vh; /* Adjusted for better visibility */
+    width: 10vh; /* Added width to make pipes visible */
+    background: linear-gradient(to bottom, lightgreen, green); /* Improved gradient */
+    border: 5px solid black;
+    z-index: 90; /* Ensure pipes are below the bird */
+}
+
+.message {
+    position: absolute;
+    z-index: 10;
+    color: black;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 24px; /* Ensure consistent font size */
+    font-weight: bold;
+}
+
+.messageStyle {
+    background: white;
+    padding: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px; /* Slightly rounded corners for better design */
+}
+
+.score {
+    position: fixed;
+    z-index: 10;
+    height: 10vh;
+    font-size: 8vh; /* Reduced for better alignment */
+    font-weight: 100;
+    color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    top: 0;
+    left: 0;
+    margin: 10px;
+}
+
+.score_val {
+    color: gold;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 1000px) {
+    .message {
+        font-size: 18px; /* Reduced for smaller screens */
+        top: 50%;
+        white-space: nowrap;
+    }
+
+    .score {
+        font-size: 6vh; /* Adjusted for smaller screens */
+    }
+
+    .bird {
+        width: 90px; /* Adjusted for smaller screens */
+        height: 70px;
+    }
+
+    .pipe_sprite {
+        width: 8vh; /* Adjusted for smaller screens */
+        height: 30vh; /* Reduced height for smaller screens */
+    }
+}
