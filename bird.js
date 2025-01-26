@@ -11,6 +11,7 @@ let score_title = document.querySelector('.score_title');
 let game_stage = 'start';
 let bird_dy = 0; // Reset bird's velocity
 let pipe_interval; // To manage pipe creation interval
+let isJumping = false; // Flag to track if the bird is jumping
 img.style.display = 'none';
 message.classList.add('messageStyle');
 
@@ -84,13 +85,18 @@ function play() {
 
         // Bird controls (for mobile touch or keyboard keydown)
         const jump = () => {
+            if (isJumping) return; // Prevent jump if already jumping
+            isJumping = true;
             img.src = 'bird.jpg';
             bird_dy = -7.6;
+            setTimeout(() => {
+                isJumping = false; // Allow jumping again after a short delay
+            }, 300); // Set jump duration (time before the bird can jump again)
         };
 
         // Respond to keydown (keyboard) and touchstart (mobile) for jump
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowUp' || e.key === ' ') {
+            if ((e.key === 'ArrowUp' || e.key === ' ') && !isJumping) {
                 jump();
             }
         });
