@@ -78,14 +78,14 @@ function play() {
         // Bird controls
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowUp' || e.key === ' ') {
-                img.src = 'bird.jpg';
+                img.src = 'assets/bird.jpg';
                 bird_dy = -7.6;
             }
         });
 
         document.addEventListener('keyup', (e) => {
             if (e.key === 'ArrowUp' || e.key === ' ') {
-                img.src = 'bird.jpg';
+                img.src = 'assets/bird.jpg';
             }
         });
 

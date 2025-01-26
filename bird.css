@@ -8,7 +8,7 @@
 .background {
     height: 100vh;
     width: 100vw; /* Changed to 100vw for full width */
-    background: url(background.jpg) no-repeat center center fixed;
+    background: url(assets/Background.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
