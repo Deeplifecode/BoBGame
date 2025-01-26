@@ -14,8 +14,9 @@ let pipe_interval; // To manage pipe creation interval
 img.style.display = 'none';
 message.classList.add('messageStyle');
 
-// Start or restart game on screen click
+// Start or restart game on screen click or touch
 document.addEventListener('click', startOrRestartGame);
+document.addEventListener('touchstart', startOrRestartGame);
 
 function startOrRestartGame() {
     if (game_stage !== 'play') {
@@ -35,8 +36,9 @@ function restartGame() {
     message.classList.remove('messageStyle');
     play();
 
-    // Reattach the click event listener after restart
+    // Reattach the click/touch event listener after restart
     document.addEventListener('click', startOrRestartGame);
+    document.addEventListener('touchstart', startOrRestartGame);
 }
 
 function play() {
@@ -80,18 +82,22 @@ function play() {
         bird.style.top = bird_prop.top + bird_dy + 'px';
         bird_prop = bird.getBoundingClientRect();
 
-        // Bird controls
+        // Bird controls (for mobile touch or keyboard keydown)
+        const jump = () => {
+            img.src = 'bird.jpg';
+            bird_dy = -7.6;
+        };
+
+        // Respond to keydown (keyboard) and touchstart (mobile) for jump
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowUp' || e.key === ' ') {
-                img.src = 'bird.jpg';
-                bird_dy = -7.6;
+                jump();
             }
         });
 
-        document.addEventListener('keyup', (e) => {
-            if (e.key === 'ArrowUp' || e.key === ' ') {
-                img.src = 'bird.jpg';
-            }
+        document.addEventListener('touchstart', (e) => {
+            e.preventDefault();  // Prevent page scroll on touch
+            jump();
         });
 
         // Game over if bird hits the boundaries
@@ -138,11 +144,13 @@ function endGame() {
     message.classList.add('messageStyle');
     img.style.display = 'none';
 
-    // Remove the click event listener after game over to prevent it from triggering again unintentionally
+    // Remove the click/touch event listener after game over to prevent it from triggering again unintentionally
     document.removeEventListener('click', startOrRestartGame);
+    document.removeEventListener('touchstart', startOrRestartGame);
 
-    // Reattach the click event listener after the game ends
+    // Reattach the click/touch event listener after the game ends
     setTimeout(() => {
         document.addEventListener('click', startOrRestartGame);
+        document.addEventListener('touchstart', startOrRestartGame);
     }, 1000); // Add a slight delay to ensure the restart message is shown
 }
