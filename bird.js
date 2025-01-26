@@ -34,6 +34,9 @@ function restartGame() {
     message.innerHTML = '';
     message.classList.remove('messageStyle');
     play();
+
+    // Reattach the click event listener after restart
+    document.addEventListener('click', startOrRestartGame);
 }
 
 function play() {
@@ -137,4 +140,9 @@ function endGame() {
 
     // Remove the click event listener after game over to prevent it from triggering again unintentionally
     document.removeEventListener('click', startOrRestartGame);
+
+    // Reattach the click event listener after the game ends
+    setTimeout(() => {
+        document.addEventListener('click', startOrRestartGame);
+    }, 1000); // Add a slight delay to ensure the restart message is shown
 }
